@@ -9,6 +9,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      avatar_url: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,

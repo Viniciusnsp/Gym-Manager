@@ -1,17 +1,10 @@
 import { Router } from 'express'
-import Instructor from './app/models/instructor'
+import InstructorController from './app/controllers/InstructorController'
 
 const routes = new Router()
 
-routes.get('/', async (req, res) => {
-    const instructor = await Instructor.create({
-        name: 'Vinicius Pereira',
-        email: 'vinicius@gmail.com',
-        gender: 'masculino',
-        services: 'crossfit',
-    })
-    return res.json(instructor)
-})
+routes.post('/instructors', InstructorController.store)
+routes.put('/instructors/:index', InstructorController.update)
 
 export default routes
 
