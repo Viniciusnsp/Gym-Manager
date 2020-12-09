@@ -1,51 +1,38 @@
 import Instructor from '../models/instructor'
 
 class InstructorController {
-  async store(req, res) {
-    const instructorExists = await Instructor.findOne({ where: { email: req.body.email }})
-
-    if (instructorExists) {
-        return res.status(400).json({ error: 'Instructor already exists.' })
-    }
-
-    const { id, avatar_url, name, email, gender, services, created_at } = await Instructor.create(req.body)
+  async index(req, res) {
+    const instructors = await Instructor.findAll()
       
-    return res.json({
-        id,
-        avatar_url,
-        name,
-        email,
-        gender,
-        services,
-        created_at,
-    })
+    return res.json(instructors)
+  }
+
+  async store(req, res) {
+    const instructor = await Instructor.create(req.body)
+      
+    return res.json(instructor)
   }
 
   async update(req, res) {
-      const { index } = req.params
-      const { email } = req.body
+      const { id } = req.params
+      const { avatar_url, name, email, gender, services } = (req.body)
 
-      const instructor = await Instructor.findByPk(req.instructorId)
-
-      if (email != instructor.email) {
-          const instructorExists = await Instructor.findOne({ where: { email }})
-
-          if(instructorExists) {
-              return res.status(400).json({ error: 'Instructor already exists. '})
+      const instructor = await Instructor.update({ avatar_url, name, email, gender, services },
+        { where: 
+          {
+           id: id
           }
-      }
+        })
+         return res.json(instructor)
+    }
+  
+  async delete(req, res) {
+      const { id } = req.params
 
-      const { id, avatar_url, name, gender, services, created_at } = await instructor[index].update(req.body)
-      return res.json({ 
-        id,
-        avatar_url,
-        name,
-        email,
-        gender,
-        services,
-        created_at,
-      })
+      const instructor = await Instructor.destroy({where: { id: id }})
+      return res.send(`Instrutor deletado com sucesso.`)
   }
+      
 }
 
 export default new InstructorController

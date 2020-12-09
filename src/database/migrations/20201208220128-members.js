@@ -2,12 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('instructors', { 
+    return queryInterface.createTable('members', { 
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+      },
+      instructor_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'instructors', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+
       },
       avatar_url: {
         type: Sequelize.STRING,
@@ -25,8 +33,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      services: {
-        type: Sequelize.STRING,
+      height: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      weight: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       created_at: {

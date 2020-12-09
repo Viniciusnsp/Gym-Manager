@@ -1,21 +1,23 @@
 import Sequelize, { Model } from 'sequelize'
 
-class Instructor extends Model {
+class Member extends Model {
     static init(sequelize) {
         super.init({
             avatar_url: Sequelize.STRING,
             name: Sequelize.STRING,
             email: Sequelize.STRING,
             gender: Sequelize.STRING,
-            services: Sequelize.STRING,
+            height : Sequelize.INTEGER,
+            weight : Sequelize.INTEGER,
         },
         {
             sequelize,
         })
     }
+
     static associate(models) {
-        this.hasMany(models.Member, { foreignKey: 'instructor_id', as: 'members'})
+        this.belongsTo(models.Instructor, { foreignKey: 'instructor_id', as: 'instructor'})
     }
 }
 
-export default Instructor
+export default Member
