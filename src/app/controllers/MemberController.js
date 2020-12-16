@@ -6,6 +6,17 @@ class MemberController {
     const members = await Member.findAll()
     return res.json(members)
   }
+  async indexbypk(req, res) {
+    const { id } = req.params
+
+    const member = await Member.findAll( {
+      where: 
+      {
+        id:id
+      }
+    }) 
+    return res.json(member)
+  }
 
   async store(req, res) {
     const { instructor_id } = req.params  

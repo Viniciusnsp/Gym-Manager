@@ -6,6 +6,18 @@ class InstructorController {
       
     return res.json(instructors)
   }
+  async indexbypk(req, res) {
+    const { id } = req.params
+
+    const instructor = await Instructor.findAll( {
+      where: 
+      {
+        id:id
+      }
+    }) 
+
+    return res.json(instructor)
+  }
 
   async store(req, res) {
     const instructor = await Instructor.create(req.body)
