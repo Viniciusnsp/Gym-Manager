@@ -11,8 +11,6 @@ const models = [Instructor, Member]
 class Database {
     constructor(){
         this.init()
-        Member.associate(this.connection.models)
-        Instructor.associate(this.connection.models)
     }
     init(){
         this.connection = new Sequelize(databaseConfig)

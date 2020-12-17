@@ -1,5 +1,4 @@
 import Member from '../models/member'
-import Instructor from '../models/instructor'
 
 class MemberController {
   async index(req, res) {
@@ -9,7 +8,7 @@ class MemberController {
   async indexbypk(req, res) {
     const { id } = req.params
 
-    const member = await Member.findAll( {
+    const member = await Member.findAll({
       where: 
       {
         id:id
@@ -19,33 +18,16 @@ class MemberController {
   }
 
   async store(req, res) {
-    const { instructor_id } = req.params  
-    const { avatar_url, name, email, gender, height, weight } = (req.body)
-
-    const instructor = await Instructor.findByPk(instructor_id)
-
-    if(!instructor) {
-        return res.status(400).json({ error: 'Instructor not found '})
-    }
-
-    const member =  await Member.create({
-        avatar_url,
-        name,
-        email,
-        gender,
-        height,
-        weight,
-        instructor_id,
-    })
-      
+    const member = await Member.create(req.body)
+  
     return res.json(member)
   }
 
   async update(req, res) {
     const { id } = req.params
-    const { avatar_url, name, email, gender, height, weight } = (req.body)
+    const { name, email, gender, height, weight } = (req.body)
 
-    const member = await Member.update({ avatar_url, name, email, gender, height, weight },
+    const member = await Member.update({  name, email, gender, height, weight },
       { where: 
         {
          id: id

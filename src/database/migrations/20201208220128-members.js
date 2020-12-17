@@ -9,14 +9,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      instructor_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'instructors', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-
-      },
+   
       avatar_url: {
         type: Sequelize.STRING,
         allowNull: false,

@@ -14,10 +14,6 @@ class Member extends Model {
             sequelize,
         })
     }
-
-    static associate(models) {
-        this.belongsTo(models.Instructor, { foreignKey: 'instructor_id', as: 'instructor'})
-    }
 }
 
 export default Member

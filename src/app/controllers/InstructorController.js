@@ -19,7 +19,7 @@ class InstructorController {
     return res.json(instructor)
   }
 
-  async store(req, res) {
+  async store(req, res) {   
     const instructor = await Instructor.create(req.body)
       
     return res.json(instructor)

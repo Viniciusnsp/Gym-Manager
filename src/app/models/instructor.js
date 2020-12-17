@@ -13,9 +13,6 @@ class Instructor extends Model {
             sequelize,
         })
     }
-    static associate(models) {
-        this.hasMany(models.Member, { foreignKey: 'instructor_id', as: 'members'})
-    }
 }
 
 export default Instructor

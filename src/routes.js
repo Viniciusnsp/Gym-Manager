@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import InstructorController from './app/controllers/InstructorController'
 import MemberController from './app/controllers/MemberController'
-import InstructorMemberController from './app/controllers/InstructorMemberController'
 
 const routes = new Router()
 
@@ -34,11 +33,10 @@ routes.delete('/instructors/:id', InstructorController.delete)
 //Rotas membros
 routes.get('/members', MemberController.index)
 routes.get('/members/:id', MemberController.indexbypk)
-routes.post('/instructors/:instructor_id/members', MemberController.store)
+routes.post('/members', MemberController.store)
 routes.put('/members/:id', MemberController.update)
 routes.delete('/members/:id', MemberController.delete)
 
-routes.get('/instructors/:instructor_id/members', InstructorMemberController.index)
 
 export default routes
 
